@@ -10,7 +10,7 @@ pub struct GCalender {
 
 impl GCalender {
     pub async fn new(gcal_config: GCalConfig) -> Result<GCalender> {
-        let gcal_client = Client::new(
+        let mut gcal_client = Client::new(
             gcal_config.client_id,
             gcal_config.client_secret,
             gcal_config.redirect_uri,

@@ -19,6 +19,16 @@ impl GCalConfig {
             refresh_token: get_env_var_or_empty("GCAL_REFRESH_TOKEN").await?,
         })
     }
+
+    pub async fn set_token(&mut self, token: String) -> Result<()> {
+        self.token = token;
+        Ok(())
+    }
+
+    pub async fn set_refresh_token(&mut self, refresh_token: String) -> Result<()> {
+        self.refresh_token = refresh_token;
+        Ok(())
+    }
 }
 
 // Helper functions
