@@ -5,11 +5,12 @@ use config::EnvConfig;
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().ok();
     env_logger::init();
     let config = EnvConfig::new().await;
     if let Err(e) = config {
         log::error!("Config init error {e:?}")
     } else {
-        log::error!("Config init without error");
+        log::info!("Config init without error");
     }
 }

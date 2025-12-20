@@ -26,10 +26,7 @@ async fn get_env_var_or_empty(key: &str) -> Result<String> {
     let result = match env::var(key) {
         Ok(result) => result,
         Err(_) => {
-            log::info!(
-                "{} does not exist or is mangled. Initializing to empty!",
-                key.to_string()
-            );
+            log::info!("{key} does not exist or is mangled. Initializing to empty!");
             "".to_string()
         }
     };
