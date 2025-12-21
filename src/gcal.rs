@@ -14,9 +14,13 @@ impl GCalender {
             gcal_config.client_id,
             gcal_config.client_secret,
             gcal_config.redirect_uri,
-            gcal_config.token,
-            gcal_config.refresh_token,
+            gcal_config.token.clone(),
+            gcal_config.refresh_token.clone(),
         );
+
+        if gcal_config.token.is_empty() | gcal_config.refresh_token.is_empty() {
+            // First time impl, need to get the tokens
+        }
 
         Ok(GCalender { gcal_client })
     }

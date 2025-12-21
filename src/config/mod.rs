@@ -1,14 +1,17 @@
+pub mod database_config;
 pub mod gcal_config;
 pub mod todoist_config;
 
 use anyhow::Result;
 
+use database_config::PostgresConfig;
 use gcal_config::GCalConfig;
 use todoist_config::TodoistConfig;
 
 pub struct EnvConfig {
-    gcal_config: GCalConfig,
-    todoist_config: TodoistConfig,
+    pub gcal_config: GCalConfig,
+    pub todoist_config: TodoistConfig,
+    pub pg_config: PostgresConfig,
 }
 
 impl EnvConfig {
@@ -16,6 +19,7 @@ impl EnvConfig {
         Ok(EnvConfig {
             gcal_config: GCalConfig::new().await?,
             todoist_config: TodoistConfig::new().await?,
+            pg_config: PostgresConfig::new().await?,
         })
     }
 }
