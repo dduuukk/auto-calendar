@@ -5,8 +5,6 @@ pub struct GCalConfig {
     pub client_id: String,
     pub client_secret: String,
     pub redirect_uri: String,
-    pub token: String,
-    pub refresh_token: String,
 }
 
 impl GCalConfig {
@@ -15,19 +13,7 @@ impl GCalConfig {
             client_id: env::var("GCAL_CLIENT_ID")?,
             client_secret: env::var("GCAL_CLIENT_SECRET")?,
             redirect_uri: env::var("GCAL_REDIRECT_URI")?,
-            token: get_env_var_or_empty("GCAL_TOKEN").await?,
-            refresh_token: get_env_var_or_empty("GCAL_REFRESH_TOKEN").await?,
         })
-    }
-
-    pub async fn set_token(&mut self, token: String) -> Result<()> {
-        self.token = token;
-        Ok(())
-    }
-
-    pub async fn set_refresh_token(&mut self, refresh_token: String) -> Result<()> {
-        self.refresh_token = refresh_token;
-        Ok(())
     }
 }
 
